@@ -10,21 +10,27 @@ class Item(Resource):
                         required=True,                          # no abble to get request without price
                         help='This field cannot be left blank.'
                         )
+    parser.add_argument('store_id',
+                        type=int,
+                        required=True,
+                        help='Every item needs a store id.'
+                        )
+
 
     @jwt_required()                             # at first authenticate, then - get method
     def get(self, name):
         item = ItemModel.find_by_name(name)
         if item:
             return item.json()
-        return {'message': 'Item not found.'}, 404
+        return {"message": "Item not found."}, 404
 
     def post(self, name):
         if ItemModel.find_by_name(name):
-            return {'message': 'An item with name {} already exists.'.format(name)}, 400
+            return {"message": "An item with name {} already exists.".format(name)}, 400
 
         data = Item.parser.parse_args()           # put valid args in data
 
-        item = ItemModel(name, data['price'])
+        item = ItemModel(name, **data)
 
         try:
             item.save_to_db()
