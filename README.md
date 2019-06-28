@@ -8,6 +8,7 @@ The repository consist of 3 branches:
 1) Master branch contains the final version of REST API with using SQLAlchemy for storing objects 
    to a relational database. It also includes user registration and authentication. Besides storing items also 
    was added a concept of stores.
+   Branch contains a few Heroku required files for deploying APP on the internet.
 
 2) REST_API_init branch contains the initial version of code that represents items. It includes persistent storage 
    of Items to a SQLite database and user registration and authentication.
