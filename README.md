@@ -70,7 +70,7 @@ Database Python object is created, so all other files import the database variab
 The file provides user authentication, creation a JWT-token and returning it to user.
 
 
-###### Heroku files
+**Heroku files**
 
 Some files was added to tell Heroku how to run the App.
 
@@ -112,7 +112,7 @@ web: uwsgi uwsgi.ini
 ```
 
 
-###### Models folder
+**Models folder**
 
 ###### [item.py](https://github.com/brechka/REST_API/blob/master/models/item.py)
 
@@ -145,7 +145,7 @@ The UserModel contains 3 properties:
 - *password.*
 
 
-###### Resources folder
+**Resources folder**
 
 ###### [item.py](https://github.com/brechka/REST_API/blob/master/resources/item.py)
 
