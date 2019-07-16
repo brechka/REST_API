@@ -12,14 +12,20 @@ from resources.store import Store, StoreList
 
 
 app = Flask(__name__)
+
 # use SQLite locally, if DB_URL is not defined
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False        # SQLAlchemy - main library, has already modif tracker
+
+# SQLAlchemy has already modif tracker
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 # change the url: /login instead of /auth (by default)
 app.config['JWT_AUTH_URL_RULE'] = '/login'
+
 # config JWT to expire within half an hour
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=1800)
-# config JWT auth key name to be 'email' instead of default 'username'
+
+# config JWT auth key name is 'email' instead of default 'username'
 app.config['JWT_AUTH_USERNAME_KEY'] = 'email'
 app.secret_key = 'jose'
 api = Api(app)

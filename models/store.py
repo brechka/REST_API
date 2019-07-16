@@ -8,11 +8,17 @@ class StoreModel(db.Model):
 
     items = db.relationship('ItemModel', lazy='dynamic')    # Separated query gets generated for the related object
 
+    """
+    With lazy="dynamic", items becomes a SQLAlchemy query. For accessing the items in the store, 
+    do this: store.items.all(). '.all()' (only needed when lazy="dynamic") makes query go into the 
+    database and retrieve all the items. It is called a "lazy" property because the items are not 
+    loaded until to do .all().
+    """
+
     def __init__(self, name):
         self.name = name
 
     def json(self):
-        # trade of between speed of creation the store and speed of calling a json-method
         return {"name": self.name, "items": [item.json() for item in self.items.all()]}
 
     @classmethod

@@ -4,7 +4,7 @@ from models.item import ItemModel
 
 
 class Item(Resource):
-    parser = reqparse.RequestParser()           # belongs to class itself; new object for parsing a request
+    parser = reqparse.RequestParser()           # new object for parsing a request
     parser.add_argument('price',                # parser will look at he JSON payload
                         type=float,
                         required=True,                          # no abble to get request without price
@@ -17,7 +17,8 @@ class Item(Resource):
                         )
 
 
-    @jwt_required()                             # at first authenticate, then - get method
+    @jwt_required()
+    # user must provide a valid JWT; work with both Fresh or Non-fresh jwt-token
     def get(self, name):
         item = ItemModel.find_by_name(name)
         if item:
@@ -28,14 +29,15 @@ class Item(Resource):
         if ItemModel.find_by_name(name):
             return {"message": "An item with name {} already exists.".format(name)}, 400
 
-        data = Item.parser.parse_args()           # put valid args in data
-
+        # retrieve data from the request body using the parser
+        data = Item.parser.parse_args()
+        # create a new item
         item = ItemModel(name, **data)
 
         try:
             item.save_to_db()
         except:
-            return {"message": "An error occurred inserting the item."}, 500    # Internal server error
+            return {"message": "An error occurred inserting the item."}, 500
 
         return item.json(), 201
 
@@ -52,7 +54,7 @@ class Item(Resource):
         item = ItemModel.find_by_name(name)
 
         if item:
-            item.price = data['price']
+            item.price = data['price']          # price - the only thing is allowed to update
         else:
             item = ItemModel(name, **data)
 
