@@ -4,12 +4,12 @@ The repository consist of 2 branches:
 1) [Master](https://github.com/brechka/REST_API);
 2) [REST_API_init](https://github.com/brechka/REST_API/tree/REST_API_init).
 
-1) **Master branch** - the main code. Contains the final version of REST API with using PostgreSQL for storing objects. 
+**Master branch** - the main code. Contains the final version of REST API with using PostgreSQL for storing objects. 
 Branch contains a few **Heroku** required files for deploying APP. We used PostgreSQL instead of SQLite due to a loosing data 
 in case of destroying Dyno (has a limited running time). We'he also deployed our App on **Digital Ocean** public server.
 App includes user registration and authentication. Besides storing items also was added a concept of stores.
 
-2) **REST_API_init branch** contains the initial, simple version of code that represents items. It includes persistent 
+**REST_API_init branch** contains the initial, simple version of code that represents items. It includes persistent 
 storage of Items to a SQLite database and user registration and authentication. 
 
 
@@ -33,7 +33,7 @@ of the application and to interact with the database.
 
 ## Usage
 
-**API, deployed to Heroku**
+**API deployed to Heroku**
 
 Using the following URL in Postman, you can try the Rest API with the resources defined in the app.py file.
 (if you enter this URL in browser, you will recieve a 404 Error because path wasn't determined)
@@ -42,7 +42,7 @@ Using the following URL in Postman, you can try the Rest API with the resources 
 https://itemstores-restful-api.herokuapp.com/
 ```
 
-**API, deployed to DigitalOcean**
+**API deployed to DigitalOcean**
 
 Using our server URL in Postman, you can try the Rest API with the resources defined in the app.py file.
 
@@ -70,7 +70,7 @@ Database Python object is created, so all other files import the database variab
 The file provides user authentication, creation a JWT-token and returning it to user.
 
 
-######**Heroku files**
+###### Heroku files
 
 Some files was added to tell Heroku how to run the App.
 
@@ -112,7 +112,7 @@ web: uwsgi uwsgi.ini
 ```
 
 
-######**Models folder**
+###### Models folder
 
 ###### [item.py](https://github.com/brechka/REST_API/blob/master/models/item.py)
 
@@ -145,7 +145,7 @@ The UserModel contains 3 properties:
 - *password.*
 
 
-######**Resources folder**
+###### Resources folder
 
 ###### [item.py](https://github.com/brechka/REST_API/blob/master/resources/item.py)
 
