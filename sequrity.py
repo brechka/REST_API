@@ -1,4 +1,5 @@
-""" Authentication of user, creating a JWT-token and returning it to user.
+""" 
+Authentication of user, creating a JWT-token and returning it to user.
 """
 
 from models.user import UserModel
